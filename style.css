@@ -1,0 +1,17 @@
+#modaljoueur.openclose {
+    display: flex;
+}
+#main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.terain{
+    width: 80%;
+    height: 80%;
+}
+.case{
+    width: 4%;
+    height: 30px;
+    background-color: red;
+}
