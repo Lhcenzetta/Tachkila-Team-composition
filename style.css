@@ -157,3 +157,34 @@
 .md {
     grid-area: 8 / 8 / 9 / 10;
 }
+
+.player-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.player-num {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border: 2px solid #f5a623;
+    border-radius: 50%;
+    color: #f5a623;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.player-name {
+    color: #aab3c5;
+    font-size: 20px;
+    font-weight: 700;
+}
