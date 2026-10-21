@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Tachkila</title>
 </head>
-<body class="grid grid-cols-[25%_75%]  grid-rows-[100px_596px] ">
+<body class="grid grid-cols-[25%_75%]  grid-rows-[100px_700px] ">
     <header class=" flex  items-center justify-between gap-4 bg-[#202c40] border-b border-[#a5c4f7] px-4 col-span-full">
         <div class="flex place-items-center gap-4">
             <div class="flex h-11 w-11 items-center justify-center rounded-full border border-green-500 bg-green-500/40 text-xl">⚽</div>
@@ -28,7 +28,7 @@
     </header>
 
     <aside class="bg-[#202c40] border-r border-[#a5c4f7] p-6">
-        <button id = "Btn-add" class="flex h-[58px] w-full items-center justify-center rounded-[14px] bg-green-400 text-lg font-bold transition hover:bg-green-400/80 "> + Ajouter un joueur </button>
+        <button id = "Btn-add"  class="flex h-[58px] w-full items-center justify-center rounded-[14px] bg-green-400 text-lg font-bold transition hover:bg-green-400/80 "> + Ajouter un joueur </button>
         <div class="mb-4 mt-6 flex items-center justify-between">
             <h2 class="text-white font-bold">Effectif</h2>
             <span id="playerCount" class=" text-white rounded-xl border border-[#34445f] bg-[#111b30] px-3 py-1.5 text-sm font-semibold">1 joueur(s)</span>
@@ -37,117 +37,113 @@
         <div class="rounded-xl border border-dashed border-[#465775] p-5 text-center text-sm text-[#93b4d8]"> Aucun joueur pour le moment </div>
     </aside>
 
-    <main id="main" class="bg-[#0e1729] ">
-        <section class="terain">
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-        </section>
+    <main id="main" class="bg-[#0e1729]">
+    <section class="terain">
+        <div class="case gk">
+            <div class="num">1</div>
+            <div class="info">
+                <span class="role">GB</span>
+                <span class="name">Libre</span>
+            </div>
+        </div>
+        <div class="case post def dg"><span class="pos">DG</span><span class="status">Libre</span></div>
+        <div class="case post def dc1"><span class="pos">DC</span><span class="status">Libre</span></div>
+        <div class="case post def dc2"><span class="pos">DC</span><span class="status">Libre</span></div>
+        <div class="case post def dd"><span class="pos">DD</span><span class="status">Libre</span></div>
+        <div class="case post mid mg"><span class="pos">MG</span><span class="status">Libre</span></div>
+        <div class="case post mid mc1"><span class="pos">MC</span><span class="status">Libre</span></div>
+        <div class="case post mid mc2"><span class="pos">MC</span><span class="status">Libre</span></div>
+        <div class="case post mid md"><span class="pos">MD</span><span class="status">Libre</span></div>
+        <div class="case post att bu1"><span class="pos">BU</span><span class="status">Libre</span></div>
+        <div class="case post att bu2"><span class="pos">BU</span><span class="status">Libre</span></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+
+  
+   
+
+
+    </section>
     </main>
 
     <div id="modaljoueur" class="flex-col hidden gap-8 bg-[#202c40] h-auto w-[30%] p-8 rounded-2xl text-white absolute top-[110px] right-[20%]">
