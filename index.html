@@ -33,18 +33,56 @@
             <h2 class="text-white font-bold">Effectif</h2>
             <span id="playerCount" class=" text-white rounded-xl border border-[#34445f] bg-[#111b30] px-3 py-1.5 text-sm font-semibold">1 joueur(s)</span>
         </div>
-        <p class="mb-4 max-w-[380px] text-[14px]  text-[#8cb5de]"> Cliquez sur un joueur placé pour voir sa case sur le terrain. pour modifier, pour supprimer.</p>
-        <div id="joueur" class="rounded-xl border border-dashed border-[#465775] p-5 text-center text-sm text-[#93b4d8]"><p class="flex justify-center">Aucun joueur pour le moment</p>
+        <p class="max-w-[380px] mb-4 text-[14px]  text-[#8cb5de]"> Cliquez sur un joueur placé pour voir sa case sur le terrain. pour modifier, pour supprimer.</p>
+        <div id="joueur" class="rounded-xl border border-dashed border-[#465775] p-5 text-center text-sm text-[#93b4d8]"><p class="flex justify-center hidden">Aucun joueur pour le moment</p>
             <div class="CardJoueur">
-                <div class="player-top">
-                    <div class="player-num">1</div>
-                    <div class="player-info">
-                        <span class="player-name">bono</span>
-                        <span class="player-role">Gardien</span>
+                <div>
+                    <div class="player-top">
+                        <div class="player-num">1</div>
+                        <div class="player-info">
+                            <span class="player-name">bono</span>
+                            <span class="player-post">Gardien</span>
+                        </div>
+                        <button class="icon-btn edit"> <img src="pen-to-square-regular.svg" alt=""></button>
+                        <button class="icon-btn delete"><img src="trash-can.png" /></button>
                     </div>
-                    <button class="icon-btn edit">
-                    </button>
-                    <button class="icon-btn delete"> </button>
+                    <select class="player-select">
+                        <option>Sur le banc</option>
+                        <option selected>GB - Gardien</option>
+                        <option>DG - Défenseur gauche</option>
+                        <option>DC - Défenseur central 1</option>
+                        <option>DC - Défenseur central 2</option>
+                        <option>DD - Défenseur droit</option>
+                        <option>MG - Milieu gauche</option>
+                        <option>MC - Milieu central 1</option>
+                        <option>MC - Milieu central 2</option>
+                        <option>MD - Milieu droit</option>
+                        <option>BU - Buteur 1</option>
+                        <option>BU - Buteur 2</option>
+                    </select>
+                    <div class="player-top">
+                        <div class="player-num">1</div>
+                        <div class="player-info">
+                            <span class="player-name">bono</span>
+                            <span class="player-post">Gardien</span>
+                        </div>
+                        <button class="icon-btn edit"> <img src="icons/pen-to-square-regular.svg" alt=""></button>
+                        <button class="icon-btn delete"><img src="icons/trash-can.png" /></button>
+                    </div>
+                    <select class="player-select">
+                        <option>Sur le banc</option>
+                        <option selected>GB - Gardien</option>
+                        <option>DG - Défenseur gauche</option>
+                        <option>DC - Défenseur central 1</option>
+                        <option>DC - Défenseur central 2</option>
+                        <option>DD - Défenseur droit</option>
+                        <option>MG - Milieu gauche</option>
+                        <option>MC - Milieu central 1</option>
+                        <option>MC - Milieu central 2</option>
+                        <option>MD - Milieu droit</option>
+                        <option>BU - Buteur 1</option>
+                        <option>BU - Buteur 2</option>
+                    </select>
                 </div>
             </div>
         </div>

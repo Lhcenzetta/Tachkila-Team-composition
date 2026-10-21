@@ -1,5 +1,6 @@
 Joueurs = [
-    { id: 1, nom: 'Bono', numéro: 1, poste: "GK", position: "Gardien" }
+    { id: 1, nom: 'Bono', numéro: 1, poste: "GK", position: "Gardien" },
+    { id: 2, nom: 'Ramos', numéro: 4, poste: "MG", position: "Milieu Gouche" }
 ]
 
 const btn = document.querySelector("#Btn-add");
@@ -18,4 +19,8 @@ btnColose.addEventListener("click", () => {
 })
 
 
+
+// function AddJoueur() {
+//     const 
+// }
 
