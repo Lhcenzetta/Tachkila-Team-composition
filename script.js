@@ -1,6 +1,6 @@
 Joueurs = [
     { id: 1, nom: 'Bono', numéro: 1, poste: "GK", position: "Gardien" },
-    // { id: 2, nom: 'Ramos', numéro: 4, poste: "MG", position: "Milieu Gouche" }
+    { id: 2, nom: 'Ramos', numéro: 4, poste: "MG", position: "Milieu" }
 ]
 const posts = [
     "Sur le banc",
@@ -18,7 +18,6 @@ const posts = [
 ];
 const btn = document.querySelector("#Btn-add");
 const modaljoueur = document.querySelector("#modaljoueur")
-// const modalmodiferjoueur = documen.querySelector("#modiferjoueur")
 const JoueursDispo = document.querySelector("#joueur")
 const CardJoueur = document.querySelector("#CardJoueur")
 const save_btn = document.querySelector("#save-btn")
@@ -92,10 +91,9 @@ function AfficheJoueur(player) {
     });
     cardj.append(playertop, playerselect);
     DeleteJoueur(btnDelete , cardj, player)
-    modifierJouer(btnEdit)
+    modifierJouer(btnEdit , player)
     return cardj;
 }
-
 function afficherJoueurs() {
     JoueursDispo.textContent = "";
     Joueurs.forEach(joueur => {
@@ -103,19 +101,36 @@ function afficherJoueurs() {
     });
 }
 
-function modifierJouer(btnEdit, Joueurs) {
+function modifierJouer(btnEdit, player) {
     btnEdit.addEventListener("click", () => {
         const title = document.querySelector("#title")
-        title.textContent = "Modifier le Jouer"
+        title.textContent = "Modifier le Joueur"
         modaljoueur.classList.toggle("openclose");
+        const index = Joueurs.findIndex(j => j.id === player.id);
+        let name = document.querySelector("#nomplayer")
+        name.setAttribute("placeholder", Joueurs[index].nom);
+        let number = document.querySelector("#numplayer")
+        number.setAttribute("value", Joueurs[index].numéro);
+        const radio = document.querySelector(`input.post[value="${Joueurs[index].position}"]`);   
+        radio.setAttribute("checked", "checked")
+
+
+        let name1 = document.querySelector("#nomplayer").value.trim()
+        console.log(name1)
+        // let number2 = document.querySelector("#numplayer").value.trim()
+        // let selectedPost = document.querySelector('input[name="post"]:checked').value;
+
+        // save_btn.addEventListener("click", () => {
+        //     alert(number2)
+        // })
+
+
     })
 }
 function AjouterJoueur() {
     let name = document.querySelector("#nomplayer").value.trim()
     let number = document.querySelector("#numplayer").value.trim()
     let selectedPost = document.querySelector('input[name="post"]:checked').value;
-
-    // validatePass()
     Joueurs.push(
         {
             id: Joueurs.length + 1,
@@ -136,6 +151,8 @@ afficherJoueurs();
 save_btn.addEventListener("click", AjouterJoueur)
 
 btn.addEventListener("click", () => {
+    const title = document.querySelector("#title")
+    title.textContent = "Ajouter le Joueur"
     modaljoueur.classList.toggle("openclose");
 })
 
