@@ -22,6 +22,7 @@ const JoueursDispo = document.querySelector("#joueur")
 const CardJoueur = document.querySelector("#CardJoueur")
 const save_btn = document.querySelector("#save-btn")
 const btnColose = document.querySelector("#btnClose");
+const annulerbtn = document.querySelector("#Annuler-btn")
 
 
 
@@ -33,6 +34,7 @@ function DeleteJoueur(btnDelete, cardj, player) {
         cardj.remove();
     });
 }
+
 function AfficheJoueur(player) {
     const cardj = document.createElement("div");
     cardj.classList.add("CardJoueur");
@@ -94,6 +96,7 @@ function AfficheJoueur(player) {
     modifierJouer(btnEdit , player)
     return cardj;
 }
+
 function afficherJoueurs() {
     JoueursDispo.textContent = "";
     Joueurs.forEach(joueur => {
@@ -103,30 +106,45 @@ function afficherJoueurs() {
 
 function modifierJouer(btnEdit, player) {
     btnEdit.addEventListener("click", () => {
-        const title = document.querySelector("#title")
-        title.textContent = "Modifier le Joueur"
-        modaljoueur.classList.toggle("openclose");
+        const title = document.querySelector("#title");
+        title.textContent = "Modifier le Joueur";
+
+        modaljoueur.classList.add("openclose");
+
         const index = Joueurs.findIndex(j => j.id === player.id);
-        let name = document.querySelector("#nomplayer")
-        name.setAttribute("placeholder", Joueurs[index].nom);
-        let number = document.querySelector("#numplayer")
-        number.setAttribute("value", Joueurs[index].numéro);
-        const radio = document.querySelector(`input.post[value="${Joueurs[index].position}"]`);   
-        radio.setAttribute("checked", "checked")
 
+        let name = document.querySelector("#nomplayer");
+        name.value = Joueurs[index].nom;
 
-        let name1 = document.querySelector("#nomplayer").value.trim()
-        console.log(name1)
-        // let number2 = document.querySelector("#numplayer").value.trim()
-        // let selectedPost = document.querySelector('input[name="post"]:checked').value;
+        let number = document.querySelector("#numplayer");
+        number.value = Joueurs[index].numéro;
 
-        // save_btn.addEventListener("click", () => {
-        //     alert(number2)
-        // })
+        const radio = document.querySelector(
+            `input.post[value="${Joueurs[index].position}"]`
+        );
+        radio.checked = true;
 
+        save_btn.removeEventListener("click", AjouterJoueur);
 
-    })
+        save_btn.onclick = () => {
+            let newName = name.value.trim();
+            let newNumber = number.value;
+            let newPost = document.querySelector('input[name="post"]:checked').value;
+
+            Joueurs[index].nom = newName;
+            Joueurs[index].numéro = newNumber;
+            Joueurs[index].position = newPost;
+
+            afficherJoueurs();
+
+            modaljoueur.classList.remove("openclose");
+
+            save_btn.onclick = null;
+            save_btn.addEventListener("click", AjouterJoueur);
+        };
+    });
 }
+
 function AjouterJoueur() {
     let name = document.querySelector("#nomplayer").value.trim()
     let number = document.querySelector("#numplayer").value.trim()
@@ -140,14 +158,15 @@ function AjouterJoueur() {
             position : selectedPost
         }
     )
-    console.log(Joueurs)
+    modaljoueur.classList.remove("openclose");
     afficherJoueurs();
 }
 
 
+
+
+
 afficherJoueurs();
-
-
 save_btn.addEventListener("click", AjouterJoueur)
 
 btn.addEventListener("click", () => {
@@ -158,6 +177,9 @@ btn.addEventListener("click", () => {
 
 btnColose.addEventListener("click", () => {
     modaljoueur.classList.toggle("openclose");
+})
+annulerbtn.addEventListener("click", () => {
+    modaljoueur.classList.remove("openclose")
 })
 
 
