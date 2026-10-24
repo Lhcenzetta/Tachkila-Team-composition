@@ -23,9 +23,17 @@ const CardJoueur = document.querySelector("#CardJoueur")
 const save_btn = document.querySelector("#save-btn")
 const btnColose = document.querySelector("#btnClose");
 const annulerbtn = document.querySelector("#Annuler-btn")
-
-
-
+const GB = document.querySelector(".name")
+const dg = document.querySelector(".p-dg")
+const dc1 = document.querySelector(".p-dc1")
+const dc2 = document.querySelector(".p-dc2")
+const dd = document.querySelector(".p-dd")
+const mg = document.querySelector(".p-mg")
+const mc1 = document.querySelector(".p-mc1")
+const mc2 = document.querySelector(".p-mc2")
+const md = document.querySelector(".p-md")
+const bu1 = document.querySelector(".p-bu1")
+const bu2 = document.querySelector(".p-bu2")
 
 function DeleteJoueur(btnDelete, cardj, player) {
     btnDelete.addEventListener("click", () => {
@@ -86,11 +94,10 @@ function AfficheJoueur(player) {
         playerselect.append(option);
     });
 
-    playerselect.value = player.poste;
-
     playerselect.addEventListener("change", () => {
-        player.poste = playerselect.value;
+        assingJoueur(player ,playerselect)
     });
+
     cardj.append(playertop, playerselect);
     DeleteJoueur(btnDelete , cardj, player)
     modifierJouer(btnEdit , player)
@@ -125,7 +132,7 @@ function modifierJouer(btnEdit, player) {
         radio.checked = true;
 
         save_btn.removeEventListener("click", AjouterJoueur);
-
+        
         save_btn.onclick = () => {
             let newName = name.value.trim();
             let newNumber = number.value;
@@ -139,7 +146,6 @@ function modifierJouer(btnEdit, player) {
 
             modaljoueur.classList.remove("openclose");
 
-            save_btn.onclick = null;
             save_btn.addEventListener("click", AjouterJoueur);
         };
     });
@@ -163,9 +169,107 @@ function AjouterJoueur() {
 }
 
 
+function assingJoueur(player, playerselec) {
+    const index = Joueurs.findIndex(j => j.id === player.id);
+    if (index === -1) return;
+
+    const nvpost = playerselec.value;
+    const ancpost = Joueurs[index].poste;
+
+    const occupe = Joueurs.some(j =>
+        j.id !== player.id && j.poste === nvpost
+    );
+
+    if (occupe && nvpost !== "Sur le banc") {
+        alert("Ce poste est déjà occupé !");
+        playerselec.value = ancpost;
+        return;
+    }
+
+    const postesAutorises = {
+        "Gardien": posts.filter(p => p.startsWith("GB")),
+        "Défenseur": posts.filter(p => p.startsWith("DG") || p.startsWith("DC") || p.startsWith("DD")),
+        "Milieu": posts.filter(p => p.startsWith("MG") || p.startsWith("MC") || p.startsWith("MD")),
+        "Attaquant": posts.filter(p => p.startsWith("BU"))
+    };
+
+    if (
+        nvpost !== "Sur le banc" &&
+        !postesAutorises[player.position].includes(nvpost)
+    ) {
+        alert("Ce poste ne correspond pas à la position du joueur !");
+        playerselec.value = ancpost;
+        return;
+    }
+    Joueurs[index].poste = nvpost;
+
+    AffichierAssingPlayer();
+}
+
+
+function AffichierAssingPlayer() {
+    GB.textContent = "Libre";
+    dg.textContent = "Libre";
+    dc1.textContent = "Libre";
+    dc2.textContent = "Libre";
+    dd.textContent = "Libre";
+    mg.textContent = "Libre";
+    mc1.textContent = "Libre";
+    mc2.textContent = "Libre";
+    md.textContent = "Libre";
+    bu1.textContent = "Libre";
+    bu2.textContent = "Libre";
+    for (let i = 0; i < Joueurs.length; i++) {
+
+        if (Joueurs[i].position === "Gardien") {
+            if (Joueurs[i].poste === "GB - Gardien") {
+                GB.textContent = Joueurs[i].nom;
+            }
+        }
+        else if (Joueurs[i].position === "Défenseur") {
+
+            if (Joueurs[i].poste === "DG - Défenseur gauche")
+                dg.textContent = Joueurs[i].nom;
+
+            else if (Joueurs[i].poste === "DC - Défenseur central 1")
+                dc1.textContent = Joueurs[i].nom;
+
+            else if (Joueurs[i].poste === "DC - Défenseur central 2")
+                dc2.textContent = Joueurs[i].nom;
+
+            else if (Joueurs[i].poste === "DD - Défenseur droit")
+                dd.textContent = Joueurs[i].nom;
+        }
+        else if (Joueurs[i].position === "Milieu") {
+
+            if (Joueurs[i].poste === "MG - Milieu gauche")
+                mg.textContent = Joueurs[i].nom;
+
+            else if (Joueurs[i].poste === "MC - Milieu central 1")
+                mc1.textContent = Joueurs[i].nom;
+
+            else if (Joueurs[i].poste === "MC - Milieu central 2")
+                mc2.textContent = Joueurs[i].nom;
+
+            else if (Joueurs[i].poste === "MD - Milieu droit")
+                md.textContent = Joueurs[i].nom;
+        }
+            
+        else if (Joueurs[i].position === "Attaquant") {
+
+            if (Joueurs[i].poste === "BU - Buteur 1")
+                bu1.textContent = Joueurs[i].nom;
+
+            else if (Joueurs[i].poste === "BU - Buteur 2")
+                bu2.textContent = Joueurs[i].nom;
+        }
+    }
+}
 
 
 
+
+AffichierAssingPlayer()
 afficherJoueurs();
 save_btn.addEventListener("click", AjouterJoueur)
 
@@ -181,22 +285,3 @@ btnColose.addEventListener("click", () => {
 annulerbtn.addEventListener("click", () => {
     modaljoueur.classList.remove("openclose")
 })
-
-
-
-
-
-// function validate() {
-//     const input = document.querySelector("#nomplayer").value.trim();
-
-//     if (input === "") {
-
-//     }
-//     else if (!/^(?=.*\d)(?=.*[@#]).{8,}$/.test(pass))
-//     {
-//         error.innerText = "this password is not strong";
-//     }
-//     else {
-//     }
-
-// }
