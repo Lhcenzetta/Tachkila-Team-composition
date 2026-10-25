@@ -34,11 +34,13 @@ const mc2 = document.querySelector(".p-mc2")
 const md = document.querySelector(".p-md")
 const bu1 = document.querySelector(".p-bu1")
 const bu2 = document.querySelector(".p-bu2")
+const playerCount = document.querySelector("#playerCount")
 
 function DeleteJoueur(btnDelete, cardj, player) {
     btnDelete.addEventListener("click", () => {
         const index = Joueurs.findIndex(j => j.id === player.id);
         if (index !== -1) Joueurs.splice(index, 1);
+        playerCount.textContent = Joueurs.length + " joueur(s)"
         cardj.remove();
     });
 }
@@ -165,23 +167,36 @@ function modifierJouer(btnEdit, player) {
     });
 }
 
+
 function AjouterJoueur() {
-    let name = document.querySelector("#nomplayer").value.trim()
-    let number = document.querySelector("#numplayer").value.trim()
-    let selectedPost = document.querySelector('input[name="post"]:checked').value;
-    Joueurs.push(
+    let name = document.querySelector("#nomplayer").value.trim();
+    let number = document.querySelector("#numplayer").value.trim();
+    let selectedPost = document.querySelector('input[name="post"]:checked')?.value;
+
+    const valid = valide_input_name(name, number);
+
+    if (valid && selectedPost)
+    {
+        Joueurs.push(
         {
             id: Joueurs.length + 1,
             nom: name,
-            numéro: number,
+            numéro: Number(number),
             poste: "Sur le banc",
-            position : selectedPost
-        }
-    )
-    modaljoueur.classList.remove("openclose");
-    afficherJoueurs();
-}
+            position: selectedPost
+        });
 
+        afficherJoueurs();
+        modaljoueur.classList.remove("openclose");
+
+        afficherMessage("Joueur ajoute avec succes !", true);
+    }
+    else if (valid && !selectedPost)
+    {
+        afficherMessage("Veuillez selectionner une position !", false);
+    }
+    playerCount.textContent = Joueurs.length + " joueur(s)"
+}
 
 function assingJoueur(player, playerselec) {
     const index = Joueurs.findIndex(j => j.id === player.id);
@@ -195,7 +210,7 @@ function assingJoueur(player, playerselec) {
     );
 
     if (occupe && nvpost !== "Sur le banc") {
-        alert("Ce poste est déjà occupé !");
+        afficherMessage("Ce poste est deja occupe !" , false);
         playerselec.value = ancpost;
         return;
     }
@@ -222,7 +237,7 @@ function assingJoueur(player, playerselec) {
     }
 
     if (valide === false) {
-        alert("Ce poste ne correspond pas à la position du joueur !");
+        afficherMessage("Ce poste ne correspond pas a la position du joueur !" ,false);
         playerselec.value = ancpost;
         return;
     }
@@ -290,12 +305,55 @@ function AffichierAssingPlayer() {
         }
     }
 }
+function afficherMessage(texte, success) {
+    const notification = document.querySelector("#notification");
+    const message = document.querySelector("#message");
 
+    message.textContent = texte;
 
+    notification.classList.remove("hidden");
 
+    if (success) {
+        notification.classList.remove("bg-red-100", "border-red-500");
+        notification.classList.add("bg-green-100", "border-green-500");
 
-AffichierAssingPlayer()
-afficherJoueurs();
+        message.classList.remove("text-red-700");
+        message.classList.add("text-green-700");
+    }
+    else {
+        notification.classList.remove("bg-green-100", "border-green-500");
+        notification.classList.add("bg-red-100", "border-red-500");
+
+        message.classList.remove("text-green-700");
+        message.classList.add("text-red-700");
+    }
+
+    setTimeout(() => {
+        notification.classList.add("hidden");
+    }, 3000);
+}
+function valide_input_name(name, number) {
+    let valid = true;
+
+    if (name === "") {
+        afficherMessage("Le nom est obligatoire !", false);
+        valid = false;
+    }
+    else if (!/^[a-zA-ZÀ-ÿ' -]{2,50}$/.test(name)) {
+        afficherMessage("Le nom doit etre vrai nom!", false);
+        valid = false;
+    }
+    else if (number === "" || Number(number) < 1 || Number(number) > 99 || !Number.isInteger(Number(number))) {
+        afficherMessage("Le numéro doit être entre 1 et 99 !", false);
+        valid = false;
+    }
+    else if (Joueurs.some(j => Number(j.numéro) === Number(number))) {
+        afficherMessage("Ce numéro est deja utilise par un joueur !", false);
+        valid = false;
+    }
+
+    return valid;
+}
 save_btn.addEventListener("click", AjouterJoueur)
 
 btn.addEventListener("click", () => {
@@ -310,3 +368,10 @@ btnColose.addEventListener("click", () => {
 annulerbtn.addEventListener("click", () => {
     modaljoueur.classList.remove("openclose")
 })
+
+
+
+AffichierAssingPlayer()
+afficherJoueurs();
+playerCount.textContent = Joueurs.length + " joueur(s)" 
+
