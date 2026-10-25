@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./output.css" rel="stylesheet">
+    <!-- <link href="./output.css" rel="stylesheet"> -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <title>Tachkila</title>
 </head>
-<body class="grid grid-cols-[25%_75%]  grid-rows-[100px_700px] ">
+<body class="grid grid-cols-[25%_75%]  grid-rows-[auto_auto] ">
     <header class=" flex  items-center justify-between gap-4 bg-[#202c40] border-b border-[#a5c4f7] px-4 col-span-full">
         <div class="flex place-items-center gap-4">
             <div class="flex h-11 w-11 items-center justify-center rounded-full border border-green-500 bg-green-500/40 text-xl">⚽</div>
@@ -35,61 +35,12 @@
         </div>
         <p class="max-w-[380px] mb-4 text-[14px]  text-[#8cb5de]"> Cliquez sur un joueur placé pour voir sa case sur le terrain. pour modifier, pour supprimer.</p>
         <div id="joueur" class="flex-col rounded-xl border border-dashed border-[#465775] p-5 text-center text-sm text-[#93b4d8]"><p class="flex justify-center hidden">Aucun joueur pour le moment</p>
-            <div class="CardJoueur">
-                <div class="player-top">
-                    <div class="player-num">1</div>
-                    <div class="player-info">
-                        <span class="player-name">bono</span>
-                        <span class="player-post">Gardien</span>
-                    </div>
-                    <button class="icon-btn edit"> <img src="icons/pen-to-square-regular.svg" alt=""></button>
-                    <button class="icon-btn delete"><img src="icons/trash-can.png" /></button>
-                </div>
-                <select class="player-select">
-                    <option>Sur le banc</option>
-                    <option selected>GB - Gardien</option>
-                    <option>DG - Défenseur gauche</option>
-                    <option>DC - Défenseur central 1</option>
-                    <option>DC - Défenseur central 2</option>
-                    <option>DD - Défenseur droit</option>
-                    <option>MG - Milieu gauche</option>
-                    <option>MC - Milieu central 1</option>
-                    <option>MC - Milieu central 2</option>
-                    <option>MD - Milieu droit</option>
-                    <option>BU - Buteur 1</option>
-                    <option>BU - Buteur 2</option>
-                </select>
-            </div>
-            <div class="CardJoueur">
-                <div class="player-top">
-                    <div class="player-num">1</div>
-                    <div class="player-info">
-                        <span class="player-name">bono</span>
-                        <span class="player-post">Gardien</span>
-                    </div>
-                    <button class="icon-btn edit"> <img src="icons/pen-to-square-regular.svg" alt=""></button>
-                    <button class="icon-btn delete"><img src="icons/trash-can.png" /></button>
-                </div>
-                <select class="player-select">
-                    <option>Sur le banc</option>
-                    <option selected>GB - Gardien</option>
-                    <option>DG - Défenseur gauche</option>
-                    <option>DC - Défenseur central 1</option>
-                    <option>DC - Défenseur central 2</option>
-                    <option>DD - Défenseur droit</option>
-                    <option>MG - Milieu gauche</option>
-                    <option>MC - Milieu central 1</option>
-                    <option>MC - Milieu central 2</option>
-                    <option>MD - Milieu droit</option>
-                    <option>BU - Buteur 1</option>
-                    <option>BU - Buteur 2</option>
-                </select>
-            </div>
+            
         </div>
     </aside>
 
-    <main id="main" class="bg-[#0e1729]">
-    <section class="terain">
+    <main id="main" class="relative bg-[#0e1729]">
+    <section class="terain" >
         <div class="case gk">
             <div class="num">1</div>
             <div class="info">
@@ -97,16 +48,16 @@
                 <span class="name">Libre</span>
             </div>
         </div>
-        <div class="case post def dg"><span class="pos">DG</span><span class="status">Libre</span></div>
-        <div class="case post def dc1"><span class="pos">DC</span><span class="status">Libre</span></div>
-        <div class="case post def dc2"><span class="pos">DC</span><span class="status">Libre</span></div>
-        <div class="case post def dd"><span class="pos">DD</span><span class="status">Libre</span></div>
-        <div class="case post mid mg"><span class="pos">MG</span><span class="status">Libre</span></div>
-        <div class="case post mid mc1"><span class="pos">MC</span><span class="status">Libre</span></div>
-        <div class="case post mid mc2"><span class="pos">MC</span><span class="status">Libre</span></div>
-        <div class="case post mid md"><span class="pos">MD</span><span class="status">Libre</span></div>
-        <div class="case post att bu1"><span class="pos">BU</span><span class="status">Libre</span></div>
-        <div class="case post att bu2"><span class="pos">BU</span><span class="status">Libre</span></div>
+        <div class="case post def dg"><span class="pos">DG</span><span class="status p-dg">Libre</span></div>
+        <div class="case post def dc1"><span class="pos">DC</span><span class="status p-dc1">Libre</span></div>
+        <div class="case post def dc2"><span class="pos">DC</span><span class="status p-dc2">Libre</span></div>
+        <div class="case post def dd"><span class="pos ">DD</span><span class="status p-dd">Libre</span></div>
+        <div class="case post mid mg"><span class="pos ">MG</span><span class="status p-mg">Libre</span></div>
+        <div class="case post mid mc1"><span class="pos ">MC</span><span class="status p-mc1">Libre</span></div>
+        <div class="case post mid mc2"><span class="pos ">MC</span><span class="status p-mc2">Libre</span></div>
+        <div class="case post mid md"><span class="pos ">MD</span><span class="status p-md">Libre</span></div>
+        <div class="case post att bu1"><span class="pos ">BU</span><span class="status p-bu1">Libre</span></div>
+        <div class="case post att bu2"><span class="pos ">BU</span><span class="status p-bu2">Libre</span></div>
         <div class="case"></div>
         <div class="case"></div>
         <div class="case"></div>
@@ -189,38 +140,43 @@
         <div class="case"></div>
         <div class="case"></div>
         <div class="case"></div>
-
-  
-   
-
-
     </section>
+    <div class="hidden border-l-4 border-green-500 bg-green-100 p-4 rounded absolute top-5 left-[70%]">
+        <p class="text-green-700">Joueur a ete ajouter avec succssee.</p>
+    </div>
     </main>
 
     <div id="modaljoueur" class="flex-col hidden gap-8 bg-[#202c40] h-auto w-[30%] p-8 rounded-2xl text-white absolute top-[110px] right-[20%]">
             <div class="flex justify-between items-center">
-                <h2 class="text-2xl font-bold">Ajouter le joueur</h2>
+                <h2 id = "title" class="text-2xl font-bold">Ajouter le joueur</h2>
                 <button id="btnClose" class="text-gray-400 text-2xl">&#215;</button>
             </div>
             <div class="flex flex-col gap-2">
                 <label class="text-gray-400">Nom complet</label>
-                <input type="text" class="bg-slate-900 border border-slate-600 rounded-xl p-4 outline-none focus:border-blue-500">
+                <input id ='nomplayer' type="text" class="bg-slate-900 border border-slate-600 rounded-xl p-4 outline-none focus:border-blue-500">
+                <div id ="error" class=" hidden border-l-1 border-red-500 bg-red-400 p-1 rounded">
+                    <p class="text-red-700">Chox invalid</p>
+                </div>
             </div>
             <div class="flex flex-col gap-3">
                 <label class="text-gray-400">Poste</label>
                 <div class="flex flex-wrap gap-3">
-                    <label class="flex-1 flex items-center gap-3 bg-slate-900 border border-yellow-500 rounded-xl p-4 cursor-pointer"> <input type="radio" name = "post" > Gardien </label>
-                    <label class="flex-1 flex items-center gap-3 bg-slate-900 border rounded-xl border-blue-500 p-4 cursor-pointer"><input type="radio" name = "post"> Défenseur</label>
-                    <label class="flex-1 flex items-center gap-3 bg-slate-900 border rounded-xl border-orange-500 p-4 cursor-pointer"> <input type="radio" name = "post" > Milieu</label>
-                    <label class="flex-1 flex items-center gap-3 bg-slate-900  border rounded-xl p-4 border-red-500 cursor-pointer"><input type="radio" name = "post"> Attaquant </label>
+                    <label class="flex-1 flex items-center gap-3 bg-slate-900 border border-yellow-500 rounded-xl p-4 cursor-pointer">
+                        <input type="radio" class="post" name="post" value="Gardien"> Gardien </label>
+                    <label class="flex-1 flex items-center gap-3 bg-slate-900 border rounded-xl border-blue-500 p-4 cursor-pointer">
+                        <input type="radio" class="post" name="post" value="Défenseur"> Défenseur </label>
+                    <label class="flex-1 flex items-center gap-3 bg-slate-900 border rounded-xl border-orange-500 p-4 cursor-pointer">
+                        <input type="radio" class="post" name="post" value="Milieu"> Milieu </label>
+                    <label class="flex-1 flex items-center gap-3 bg-slate-900 border rounded-xl p-4 border-red-500 cursor-pointer">
+                        <input type="radio" class="post" name="post" value="Attaquant"> Attaquant </label>
                 </div>
                 <div class="flex flex-col gap-2">
                     <label class="text-gray-400">Numéro (1 à 99)</label>
-                    <input type="number" min="1" max="99" value="1" class="bg-slate-900 border border-slate-600 rounded-xl p-4 outline-none">
+                    <input id ='numplayer' type="number" min="1" max="99" value="1" class="bg-slate-900 border border-slate-600 rounded-xl p-4 outline-none">
                 </div>
                 <div class="flex justify-end gap-3 mt-2 ">
-                    <button class="bg-slate-700 px-6 py-3 rounded-xl">Annuler</button>
-                    <button class="bg-green-600 px-6 py-3 rounded-xl ">Enregistrer</button>
+                    <button id = "Annuler-btn" class="bg-slate-700 px-6 py-3 rounded-xl">Annuler</button>
+                    <button id="save-btn" class="bg-green-600 px-6 py-3 rounded-xl ">Enregistrer</button>
                 </div>
             </div>
     </div>
