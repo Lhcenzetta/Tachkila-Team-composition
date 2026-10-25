@@ -45,7 +45,14 @@ function DeleteJoueur(btnDelete, cardj, player) {
 
 function AfficheJoueur(player) {
     const cardj = document.createElement("div");
-    cardj.classList.add("CardJoueur");
+    if (player.position === "Gardien")
+        cardj.classList.add("CardJoueur-Gb");
+    else if (player.position === "Défenseur")
+        cardj.classList.add("CardJoueur-DF");
+    else if (player.position === "Milieu")
+        cardj.classList.add("CardJoueur-ME");
+    else 
+        cardj.classList.add("CardJoueur-AT");
     cardj.dataset.id = player.id;
 
     const playertop = document.createElement("div");
@@ -61,9 +68,16 @@ function AfficheJoueur(player) {
     const span1 = document.createElement("span");
     span1.classList.add("player-name");
     span1.textContent = player.nom;
-
+    
     const span2 = document.createElement("span");
-    span2.classList.add("player-post");
+    if (player.position === "Gardien")
+        span2.classList.add("player-post-GB");
+    else if (player.position === "Défenseur")
+        span2.classList.add("player-post-DF");
+    else if (player.position === "Milieu")
+        span2.classList.add("player-post-ME");
+    else
+        span2.classList.add("player-post-AT");
     span2.textContent = player.position;
 
     playerinfo.append(span1, span2);
@@ -99,7 +113,7 @@ function AfficheJoueur(player) {
     });
 
     cardj.append(playertop, playerselect);
-    DeleteJoueur(btnDelete , cardj, player)
+    DeleteJoueur(btnDelete, cardj, player)
     modifierJouer(btnEdit , player)
     return cardj;
 }
