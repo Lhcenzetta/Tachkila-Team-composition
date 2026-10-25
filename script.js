@@ -186,26 +186,37 @@ function assingJoueur(player, playerselec) {
         return;
     }
 
-    const postesAutorises = {
-        "Gardien": posts.filter(p => p.startsWith("GB")),
-        "Défenseur": posts.filter(p => p.startsWith("DG") || p.startsWith("DC") || p.startsWith("DD")),
-        "Milieu": posts.filter(p => p.startsWith("MG") || p.startsWith("MC") || p.startsWith("MD")),
-        "Attaquant": posts.filter(p => p.startsWith("BU"))
-    };
 
-    if (
-        nvpost !== "Sur le banc" &&
-        !postesAutorises[player.position].includes(nvpost)
-    ) {
+    let valide = false;
+
+    if (nvpost === "Sur le banc") {
+        valide = true;
+    }
+    else if (player.position === "Gardien" && nvpost.startsWith("GB")) {
+        valide = true;
+    }
+    else if (player.position === "Défenseur" &&
+        (nvpost.startsWith("DG") || nvpost.startsWith("DC") || nvpost.startsWith("DD"))) {
+        valide = true;
+    }
+    else if (player.position === "Milieu" &&
+        (nvpost.startsWith("MG") || nvpost.startsWith("MC") || nvpost.startsWith("MD"))) {
+        valide = true;
+    }
+    else if (player.position === "Attaquant" && nvpost.startsWith("BU")) {
+        valide = true;
+    }
+
+    if (valide === false) {
         alert("Ce poste ne correspond pas à la position du joueur !");
         playerselec.value = ancpost;
         return;
     }
+
     Joueurs[index].poste = nvpost;
 
     AffichierAssingPlayer();
 }
-
 
 function AffichierAssingPlayer() {
     GB.textContent = "Libre";
