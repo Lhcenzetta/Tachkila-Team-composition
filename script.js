@@ -157,16 +157,14 @@ function modifierJouer(btnEdit, player) {
             Joueurs[index].nom = newName;
             Joueurs[index].numéro = newNumber;
             Joueurs[index].position = newPost;
-
-            afficherJoueurs();
-
+            AffichierAssingPlayer()
+            afficherJoueurs()   
+            afficherMessage("success modified", true)
             modaljoueur.classList.remove("openclose");
-
             save_btn.addEventListener("click", AjouterJoueur);
         };
     });
 }
-
 
 function AjouterJoueur() {
     let name = document.querySelector("#nomplayer").value.trim();
@@ -305,13 +303,12 @@ function AffichierAssingPlayer() {
         }
     }
 }
+
 function afficherMessage(texte, success) {
     const notification = document.querySelector("#notification");
     const message = document.querySelector("#message");
 
     message.textContent = texte;
-
-    notification.classList.remove("hidden");
 
     if (success) {
         notification.classList.remove("bg-red-100", "border-red-500");
@@ -327,11 +324,12 @@ function afficherMessage(texte, success) {
         message.classList.remove("text-green-700");
         message.classList.add("text-red-700");
     }
-
+    notification.classList.remove("hidden");
     setTimeout(() => {
         notification.classList.add("hidden");
-    }, 3000);
+    }, 2000);
 }
+
 function valide_input_name(name, number) {
     let valid = true;
 
@@ -343,7 +341,7 @@ function valide_input_name(name, number) {
         afficherMessage("Le nom doit etre vrai nom!", false);
         valid = false;
     }
-    else if (number === "" || Number(number) < 1 || Number(number) > 99 || !Number.isInteger(Number(number))) {
+    else if (number === "" || Number(number) < 1 || Number(number) > 99) {
         afficherMessage("Le numéro doit être entre 1 et 99 !", false);
         valid = false;
     }
@@ -354,6 +352,7 @@ function valide_input_name(name, number) {
 
     return valid;
 }
+
 save_btn.addEventListener("click", AjouterJoueur)
 
 btn.addEventListener("click", () => {
