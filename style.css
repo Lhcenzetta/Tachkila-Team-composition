@@ -1,6 +1,37 @@
 #modaljoueur.openclose {
     display: flex;
 }
+
+#main {
+    min-width: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.terrain-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+.terain {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: repeat(9, minmax(50px, 1fr));
+    gap: 13px;
+    width: 100%;
+    min-width: 0;
+    margin: 0 auto;
+    padding: 18px;
+    box-sizing: border-box;
+    background: #0b1222;
+    border: 1px solid #1f2a44;
+    border-radius: 28px;
+}
+
+
+
 .case {
     background: #131b2e;
     border: 1px solid #1c2740;
@@ -291,4 +322,3 @@
     background-color: #1e293b;
     color: white;
 }
-
