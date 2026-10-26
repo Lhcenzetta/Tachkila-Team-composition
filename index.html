@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="style.css">
     <title>Tachkila</title>
 </head>
-<body class="grid grid-cols-[25%_75%]  grid-rows-[auto_auto] ">
-    <header class=" flex  items-center justify-between gap-4 bg-[#202c40] border-b border-[#a5c4f7] px-4 col-span-full">
+<body class="grid min-h-screen grid-cols-1 grid-rows-[auto_auto_1fr] lg:grid-cols-[minmax(280px,25%)_minmax(0,1fr)] lg:grid-rows-[auto_1fr] bg-[#0e1729]">
+    <header class="col-span-full flex flex-wrap items-center justify-between gap-4 border-b border-[#a5c4f7]/30 bg-[#202c40] px-4 py-4 sm:px-6">
         <div class="flex place-items-center gap-4">
             <div class="flex h-11 w-11 items-center justify-center rounded-full border border-green-500 bg-green-500/40 text-xl">⚽</div>
             <h1 class="text-3xl font-extrabold  text-white">TACHKILA</h1>
@@ -38,25 +38,26 @@
         </div>
     </aside>
 
-    <main id="main" class="relative bg-[#0e1729]">
-    <section class="terain" >
-        <div class="case gk">
-            <div class="num">1</div>
-            <div class="info">
-                <span class="role">GB</span>
-                <span class="name">Libre</span>
+    <main id="main" class="relative min-w-0 bg-[#0e1729] p-2 sm:p-4 lg:p-6">
+    <div class="terrain-wrapper">
+        <section class="terain" >
+            <div class="case gk">
+               <div class="num">1</div>
+                  <div class="info">
+                   <span class="role">GB</span>
+                   <span class="name">Libre</span>
+                </div>
             </div>
-        </div>
-        <div class="case post def dg"><span class="pos">DG</span><span class="status p-dg">Libre</span></div>
-        <div class="case post def dc1"><span class="pos">DC</span><span class="status p-dc1">Libre</span></div>
-        <div class="case post def dc2"><span class="pos">DC</span><span class="status p-dc2">Libre</span></div>
-        <div class="case post def dd"><span class="pos ">DD</span><span class="status p-dd">Libre</span></div>
-        <div class="case post mid mg"><span class="pos ">MG</span><span class="status p-mg">Libre</span></div>
-        <div class="case post mid mc1"><span class="pos ">MC</span><span class="status p-mc1">Libre</span></div>
-        <div class="case post mid mc2"><span class="pos ">MC</span><span class="status p-mc2">Libre</span></div>
-        <div class="case post mid md"><span class="pos ">MD</span><span class="status p-md">Libre</span></div>
-        <div class="case post att bu1"><span class="pos ">BU</span><span class="status p-bu1">Libre</span></div>
-        <div class="case post att bu2"><span class="pos ">BU</span><span class="status p-bu2">Libre</span></div>
+            <div class="case post def dg"><span class="pos">DG</span><span class="status p-dg">Libre</span></div>
+            <div class="case post def dc1"><span class="pos">DC</span><span class="status p-dc1">Libre</span></div>
+            <div class="case post def dc2"><span class="pos">DC</span><span class="status p-dc2">Libre</span></div>
+            <div class="case post def dd"><span class="pos ">DD</span><span class="status p-dd">Libre</span></div>
+            <div class="case post mid mg"><span class="pos ">MG</span><span class="status p-mg">Libre</span></div>
+            <div class="case post mid mc1"><span class="pos ">MC</span><span class="status p-mc1">Libre</span></div>
+            <div class="case post mid mc2"><span class="pos ">MC</span><span class="status p-mc2">Libre</span></div>
+            <div class="case post mid md"><span class="pos ">MD</span><span class="status p-md">Libre</span></div>
+            <div class="case post att bu1"><span class="pos ">BU</span><span class="status p-bu1">Libre</span></div>
+            <div class="case post att bu2"><span class="pos ">BU</span><span class="status p-bu2">Libre</span></div>
         <div class="case"></div>
         <div class="case"></div>
         <div class="case"></div>
@@ -140,12 +141,14 @@
         <div class="case"></div>
         <div class="case"></div>
     </section>
-    <div  id="notification" class="hidden border-l-4 border-green-500 bg-green-100 p-4 rounded absolute top-5 left-[70%]">
-        <p id="message" class="text-green-700"></p>
-    </div>
+<div id="notification"
+    class="fixed right-3 top-3 z-[60] hidden max-w-[calc(100vw-24px)] rounded-xl border-l-4 border-green-500 bg-green-100 p-4 shadow-lg sm:right-6 sm:top-6">
+    <p id="message" class="text-green-700"></p>
+</div>
+</div>
     </main>
 
-    <div id="modaljoueur" class="flex-col hidden gap-8 bg-[#202c40] h-auto w-[30%] p-8 rounded-2xl text-white absolute top-[110px] right-[20%]">
+    <div id="modaljoueur" class="fixed left-1/2 top-1/2 z-50 hidden max-h-[90dvh] w-[calc(100%-24px)] max-w-[520px] -translate-x-1/2 -translate-y-1/2 flex-col gap-5 overflow-y-auto rounded-2xl border border-slate-600 bg-[#202c40] p-4 text-white shadow-2xl sm:gap-6 sm:p-8">
             <div class="flex justify-between items-center">
                 <h2 id = "title" class="text-2xl font-bold">Ajouter le joueur</h2>
                 <button id="btnClose" class="text-gray-400 text-2xl">&#215;</button>
@@ -159,7 +162,7 @@
             </div>
             <div class="flex flex-col gap-3">
                 <label class="text-gray-400">Poste</label>
-                <div class="flex flex-wrap gap-3">
+                <div class="grid grid-cols-2 gap-3">
                     <label class="flex-1 flex items-center gap-3 bg-slate-900 border border-yellow-500 rounded-xl p-4 cursor-pointer">
                         <input type="radio" class="post" name="post" value="Gardien"> Gardien </label>
                     <label class="flex-1 flex items-center gap-3 bg-slate-900 border rounded-xl border-blue-500 p-4 cursor-pointer">
