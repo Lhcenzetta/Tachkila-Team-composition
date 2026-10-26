@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="./output.css" rel="stylesheet"> -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
@@ -31,7 +30,7 @@
         <button id = "Btn-add"  class="flex h-[58px] w-full items-center justify-center rounded-[14px] bg-green-400 text-lg font-bold transition hover:bg-green-400/80 "> + Ajouter un joueur </button>
         <div class="mb-4 mt-6 flex items-center justify-between">
             <h2 class="text-white font-bold">Effectif</h2>
-            <span id="playerCount" class=" text-white rounded-xl border border-[#34445f] bg-[#111b30] px-3 py-1.5 text-sm font-semibold">1 joueur(s)</span>
+            <span id="playerCount" class=" text-white rounded-xl border border-[#34445f] bg-[#111b30] px-3 py-1.5 text-sm font-semibold"></span>
         </div>
         <p class="max-w-[380px] mb-4 text-[14px]  text-[#8cb5de]"> Cliquez sur un joueur placé pour voir sa case sur le terrain. pour modifier, pour supprimer.</p>
         <div id="joueur" class="flex-col rounded-xl border border-dashed border-[#465775] p-5 text-center text-sm text-[#93b4d8]"><p class="flex justify-center hidden">Aucun joueur pour le moment</p>
@@ -141,8 +140,8 @@
         <div class="case"></div>
         <div class="case"></div>
     </section>
-    <div class="hidden border-l-4 border-green-500 bg-green-100 p-4 rounded absolute top-5 left-[70%]">
-        <p class="text-green-700">Joueur a ete ajouter avec succssee.</p>
+    <div  id="notification" class="hidden border-l-4 border-green-500 bg-green-100 p-4 rounded absolute top-5 left-[70%]">
+        <p id="message" class="text-green-700"></p>
     </div>
     </main>
 
