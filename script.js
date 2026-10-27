@@ -229,10 +229,7 @@ function assingJoueur(player, playerselec) {
         playerselec.value = ancpost;
         return;
     }
-
-
     let valide = false;
-
     if (nvpost === "Sur le banc") {
         valide = true;
     }
@@ -256,9 +253,10 @@ function assingJoueur(player, playerselec) {
         playerselec.value = ancpost;
         return;
     }
-
-    Joueurs[index].poste = nvpost;
-
+    else {
+        afficherMessage("le joueure a ete assigner avec success", true);
+        Joueurs[index].poste = nvpost;
+    }
     AffichierAssingPlayer();
 }
 
@@ -354,7 +352,7 @@ function valide_input_name(name, number, check_in) {
         afficherMessage("Le nom est obligatoire !", false);
         valid = false;
     }
-    else if (!/^[a-zA-ZÀ-ÿ' -]{2,50}$/.test(name)) {
+    else if (!/^[a-zA-ZÀ-ÿ' -]{2,30}$/.test(name)) {
         afficherMessage("Le nom doit etre vrai nom!", false);
         valid = false;
     }
