@@ -1,7 +1,4 @@
-Joueurs = [
-    { id: 1, nom: 'Bono', numéro: 1, poste: "GK", position: "Gardien" },
-    { id: 2, nom: 'Ramos', numéro: 4, poste: "MG", position: "Milieu" }
-]
+Joueurs = [];
 const posts = [
     "Sur le banc",
     "GB - Gardien",
@@ -16,6 +13,7 @@ const posts = [
     "BU - Buteur 1",
     "BU - Buteur 2"
 ];
+const key = "data-joueurs";
 const btn = document.querySelector("#Btn-add");
 const modaljoueur = document.querySelector("#modaljoueur")
 const JoueursDispo = document.querySelector("#joueur")
@@ -36,12 +34,24 @@ const bu1 = document.querySelector(".p-bu1")
 const bu2 = document.querySelector(".p-bu2")
 const playerCount = document.querySelector("#playerCount")
 
+
+function refresh() {
+    const rs = localStorage.getItem(key);
+
+    Joueurs = rs ? JSON.parse(localStorage.getItem(key)) : [];
+}
+
 function DeleteJoueur(btnDelete, cardj, player) {
     btnDelete.addEventListener("click", () => {
         const index = Joueurs.findIndex(j => j.id === player.id);
-        if (index !== -1) Joueurs.splice(index, 1);
-        playerCount.textContent = Joueurs.length + " joueur(s)"
-        cardj.remove();
+
+        if (index !== -1) {
+            Joueurs.splice(index, 1);
+            localStorage.setItem(key, JSON.stringify(Joueurs));
+            playerCount.textContent = Joueurs.length + " joueur(s)";
+            cardj.remove();
+            AffichierAssingPlayer();
+        }
     });
 }
 
@@ -153,25 +163,32 @@ function modifierJouer(btnEdit, player) {
             let newName = name.value.trim();
             let newNumber = number.value;
             let newPost = document.querySelector('input[name="post"]:checked').value;
+            const valid = valide_input_name(newName, newNumber, false);
+            if (valid && newPost) {
+                Joueurs[index].nom = newName;
+                Joueurs[index].numéro = newNumber;
+                Joueurs[index].position = newPost;
+                localStorage.setItem(key, JSON.stringify(Joueurs));
 
-            Joueurs[index].nom = newName;
-            Joueurs[index].numéro = newNumber;
-            Joueurs[index].position = newPost;
-            AffichierAssingPlayer()
-            afficherJoueurs()   
-            afficherMessage("success modified", true)
-            modaljoueur.classList.remove("openclose");
-            save_btn.addEventListener("click", AjouterJoueur);
+                AffichierAssingPlayer()
+                afficherJoueurs()
+                afficherMessage("success modified", true)
+                modaljoueur.classList.remove("openclose");
+            }
+            else if (valid && !selectedPost) {
+                afficherMessage("Veuillez selectionner une position !", false);
+            }
         };
     });
 }
 
-function AjouterJoueur() {
+function AjouterJoueur()
+{
     let name = document.querySelector("#nomplayer").value.trim();
     let number = document.querySelector("#numplayer").value.trim();
     let selectedPost = document.querySelector('input[name="post"]:checked')?.value;
 
-    const valid = valide_input_name(name, number);
+    const valid = valide_input_name(name, number,true);
 
     if (valid && selectedPost)
     {
@@ -183,11 +200,11 @@ function AjouterJoueur() {
             poste: "Sur le banc",
             position: selectedPost
         });
-
         afficherJoueurs();
         modaljoueur.classList.remove("openclose");
-
         afficherMessage("Joueur ajoute avec succes !", true);
+        localStorage.setItem(key, JSON.stringify(Joueurs));
+
     }
     else if (valid && !selectedPost)
     {
@@ -330,7 +347,7 @@ function afficherMessage(texte, success) {
     }, 2000);
 }
 
-function valide_input_name(name, number) {
+function valide_input_name(name, number, check_in) {
     let valid = true;
 
     if (name === "") {
@@ -345,13 +362,15 @@ function valide_input_name(name, number) {
         afficherMessage("Le numéro doit être entre 1 et 99 !", false);
         valid = false;
     }
-    else if (Joueurs.some(j => Number(j.numéro) === Number(number))) {
+    else if (Joueurs.some(j => Number(j.numéro) === Number(number)) && check_in ) {
         afficherMessage("Ce numéro est deja utilise par un joueur !", false);
         valid = false;
     }
 
     return valid;
 }
+
+
 
 save_btn.addEventListener("click", AjouterJoueur)
 
@@ -368,8 +387,7 @@ annulerbtn.addEventListener("click", () => {
     modaljoueur.classList.remove("openclose")
 })
 
-
-
+refresh()
 AffichierAssingPlayer()
 afficherJoueurs();
 playerCount.textContent = Joueurs.length + " joueur(s)" 
