@@ -33,7 +33,9 @@ const md = document.querySelector(".p-md")
 const bu1 = document.querySelector(".p-bu1")
 const bu2 = document.querySelector(".p-bu2")
 const playerCount = document.querySelector("#playerCount")
-
+const confirmationModal = document.querySelector("#modal-confirmation")
+const confirmedelete = document.querySelector("#confirmedelete")
+const AnnulerConfirmation = document.querySelector("#Annuler-confirmation")
 
 function refresh() {
     const rs = localStorage.getItem(key);
@@ -44,14 +46,22 @@ function refresh() {
 function DeleteJoueur(btnDelete, cardj, player) {
     btnDelete.addEventListener("click", () => {
         const index = Joueurs.findIndex(j => j.id === player.id);
+        confirmationModal.classList.remove('hidden')
+        confirmedelete.addEventListener("click", () => {
+            if (index !== -1) {
+                Joueurs.splice(index, 1);
+                localStorage.setItem(key, JSON.stringify(Joueurs));
+                playerCount.textContent = Joueurs.length + " joueur(s)";
+                cardj.remove();
+                AffichierAssingPlayer();
+                confirmationModal.classList.add('hidden')
+                afficherMessage("le joueur a ete supprimer !!", false)
+            }
+        })
+        AnnulerConfirmation.addEventListener("click", () => {
+            confirmationModal.classList.add('hidden')
+        })
 
-        if (index !== -1) {
-            Joueurs.splice(index, 1);
-            localStorage.setItem(key, JSON.stringify(Joueurs));
-            playerCount.textContent = Joueurs.length + " joueur(s)";
-            cardj.remove();
-            AffichierAssingPlayer();
-        }
     });
 }
 
@@ -384,7 +394,6 @@ btnColose.addEventListener("click", () => {
 annulerbtn.addEventListener("click", () => {
     modaljoueur.classList.remove("openclose")
 })
-
 refresh()
 AffichierAssingPlayer()
 afficherJoueurs();
