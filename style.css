@@ -245,8 +245,9 @@
 .player-top {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     margin-bottom: 17px;
+    min-width: 0;
 }
 
 .player-num {
@@ -266,11 +267,13 @@
     justify-content: start;
     gap: 4px;
     flex: 1;
+    min-width: 0;
 }
 
 .player-name {
     font-size: 16px;
     font-weight: bold;
+    overflow-wrap: anywhere;
 }
 
 .player-post-GB {
@@ -298,6 +301,12 @@
     border: none;
     cursor: pointer;
     padding: 4px;
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .icon-btn img {
