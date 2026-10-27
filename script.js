@@ -126,10 +126,9 @@ function AfficheJoueur(player) {
     posts.forEach(texte => {
         const option = document.createElement("option");
         option.textContent = texte;
-  
         playerselect.append(option);
     });
-
+    playerselect.value = player.poste;
     playerselect.addEventListener("change", () => {
         assingJoueur(player ,playerselect)
     });
@@ -266,6 +265,7 @@ function assingJoueur(player, playerselec) {
     else {
         afficherMessage("le joueure a ete assigner avec success", true);
         Joueurs[index].poste = nvpost;
+        localStorage.setItem(key, JSON.stringify(Joueurs));
     }
     AffichierAssingPlayer();
 }
